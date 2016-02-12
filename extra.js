@@ -11,3 +11,7 @@ Source.prototype.updateCreepCount = function(creep){
 	Memory.sources[this.id].CREEP_LIMIT == 0 ? Memory.sources[this.id].CREEP_LIMIT_REACHED = true : Memory.sources[this.id].CREEP_LIMIT_REACHED = false;
 	        
 }
+
+Repair
+var targets = creep.room.find(FIND_STRUCTURES, {filter: object => object.hits < object.hitsMax});
+targets.sort((a,b) => a.hits - b.hits);

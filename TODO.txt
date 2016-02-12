@@ -11,7 +11,15 @@ Refactoring:
 4. Create a test module.
 5. Clearly define initializer.
 
-Optimizations : 
+Game Optimizations : 
+
 1. Optimize role switch between harvester and builder.
 2. Build road from the Source back to the Spawn.
 	--> Eliminate the time to go back and forth from the Source to the Spawn to deliver and use the energy.
+
+3. Optimize role switch between a builder and a repairer.
+4. Repair wall right away when build.
+
+Performance Optimizations 
+	Over a period of 2 hours, the system slows down as hell. Need to optimize to make this work.
+	

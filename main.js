@@ -19,21 +19,18 @@ module.exports.loop = function () {
 		var creep = Game.creeps[name];
 
 		if(creep.memory.role == 'harvester') {
-		    //console.log("harvestor");
-		    harvester(creep);
+		    toHarvest(creep);
 		}
 
 		if(creep.memory.role == 'builder') {
-		    //console.log("builder");
-		    builder(creep);
+		    toBuild(creep);
 		}
         
         if(creep.memory.role == 'guard') {
-            //console.log("guard");
-            guard(creep);
+            toGuard(creep);
         }
         if(creep.memory.role == 'upgrader') {
-            upgrade(creep);
+            toUpgrade(creep);
         }
 	}
 }

@@ -16,11 +16,11 @@ module.exports = function(debugMode){
     
 	//INITIALIZE LIMITS
 	Memory.limits = {};
-	Memory.limits.POPULATION_LIMIT 	= 50;
-	Memory.limits.HARVESTER_LIMIT	= 10;
-	Memory.limits.BUILDER_LIMIT		= 10;
-	Memory.limits.GUARD_LIMIT		= 10;
-	Memory.limits.UPGRADER_LIMIT	= 10;
+	Memory.limits.POPULATION_LIMIT 	= 30;
+	Memory.limits.HARVESTER_LIMIT	= 14;
+	Memory.limits.BUILDER_LIMIT		= 8;
+	Memory.limits.GUARD_LIMIT		= 4;
+	Memory.limits.UPGRADER_LIMIT	= 4;
 	
 	//Set initialize flag to true
     Memory.initialize = true;

@@ -15,3 +15,13 @@ Creep.prototype.findNextAvailableSource = function(){
     }
     return closestSource;
 }
+
+Creep.prototype.findNearestConstructionSite = function(){
+	var targets = creep.room.find(FIND_CONSTRUCTION_SITES);
+	return targets[0];
+}
+
+Creep.prototype.findNearestRepairSite = function(){
+	var targets = creep.room.find(FIND_STRUCTURES, {filter: object => object.hits < object.hitsMax});
+	return targets[0];
+}
