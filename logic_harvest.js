@@ -1,6 +1,9 @@
  module.exports = function(creep){
     
     Memory.debug ? console.log(creep.id + " is harvesting") : false;
+	if(creep.carry.energy == 0){
+		creep.memory.workmode = 'harvest';
+	}
 	if(creep.carry.energy < creep.carryCapacity && creep.memory.workmode == 'harvest') {
 		var aSource = Game.getObjectById(creep.memory.target);
         if(creep.harvest(aSource) == ERR_NOT_IN_RANGE) {

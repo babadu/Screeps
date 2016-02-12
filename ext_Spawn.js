@@ -46,6 +46,9 @@ Spawn.prototype.findNextAvailableSource = function(){
         if(currentCount < sourceLimit){
 			return i;
         }
+		if(currentCount == sourceLimit){
+			Memory.sources[i].CREEP_LIMIT_REACHED = true;
+        }
     }
 }
 
@@ -56,9 +59,7 @@ Spawn.prototype.createHarvesterCreep = function(){
     Memory.debug? console.log("next source.." + nextSourceId) : false;
 	var newCreep = this.createCreep([WORK,CARRY,MOVE], null, {role:'harvester', target: nextSourceId, workmode: 'harvest'});
     if(_.isString(newCreep)){
-	    this.harvesterCount = this.harvesterCount + 1;
-		this.harvesterCount == Memory.sources[this.id].CREEP_LIMIT ? Memory.sources[this.id].CREEP_LIMIT_REACHED = true : false;
-		return newCreep;
+	    return newCreep;
 	}
 }
 
@@ -66,7 +67,6 @@ Spawn.prototype.createBuilderCreep = function(){
     
 	var newCreep = this.createCreep([WORK,CARRY,MOVE], null, {role:'builder'});
 	if(_.isString(newCreep)){
-		this.BuilderCount = this.BuilderCount + 1;
 		return newCreep;
 	}
 }
@@ -75,7 +75,6 @@ Spawn.prototype.createGuardCreep = function(){
     
 	var newCreep = this.createCreep([WORK,CARRY,MOVE], null, {role:'guard'});
 	if(_.isString(newCreep)){
-		this.GuardCount = this.GuardCount + 1;
 		return newCreep;
 	}
 }
@@ -84,7 +83,6 @@ Spawn.prototype.createUpgradeCreep = function(){
     
 	var newCreep = this.createCreep([WORK,CARRY,MOVE], null, {role:'upgrader'});
 	if(_.isString(newCreep)){
-		this.UpgraderCount = this.UpgraderCount + 1;
 		return newCreep;
 	}
 }

@@ -17,7 +17,7 @@ Creep.prototype.findNextAvailableSource = function(){
 }
 
 Creep.prototype.findNearestConstructionSite = function(){
-	var targets = creep.room.find(FIND_CONSTRUCTION_SITES);
+	var targets = this.room.find(FIND_CONSTRUCTION_SITES);
 	if(true){
 		return targets[0];
 	} else {
@@ -27,6 +27,6 @@ Creep.prototype.findNearestConstructionSite = function(){
 }
 
 Creep.prototype.findNearestRepairSite = function(){
-	var targets = creep.room.find(FIND_STRUCTURES, {filter: object => object.hits < object.hitsMax});
+	var targets = this.room.find(FIND_STRUCTURES, {filter: object => object.hits < object.hitsMax});
 	return targets[0];
 }
