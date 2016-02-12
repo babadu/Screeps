@@ -18,7 +18,12 @@ Creep.prototype.findNextAvailableSource = function(){
 
 Creep.prototype.findNearestConstructionSite = function(){
 	var targets = creep.room.find(FIND_CONSTRUCTION_SITES);
-	return targets[0];
+	if(true){
+		return targets[0];
+	} else {
+		return 'ROAD_COMPLETE';
+	}
+	
 }
 
 Creep.prototype.findNearestRepairSite = function(){

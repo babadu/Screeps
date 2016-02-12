@@ -27,6 +27,6 @@ Source.prototype.determineCreepLimit = function (){
 
 Source.prototype.initialize = function(){
     Memory.debug ? console.log(this.id + ":initialize source..") : false;
-    Memory.sources[this.id] = {CREEP_LIMIT :0, CREEP_LIMIT_REACHED:false};
+    Memory.sources[this.id] = {CREEP_LIMIT: 0, CREEP_LIMIT_REACHED: false, ROAD_TO_SPAWN: false};
     this.determineCreepLimit();
 }

@@ -7,13 +7,13 @@ var initialize = require('game_initialize');
 var ext_Creep = require('ext_Creep');
 var ext_Source = require('ext_Source');
 var ext_Spawn = require('ext_Spawn');
-var planRoad = require('create_structure');
+var planLevel = require('create_structure');
 
 module.exports.loop = function () {
 
     initialize();
     createCreeps();
-    //planRoad();
+    planLevel();
 	for(var name in Game.creeps) {
 	    
 		var creep = Game.creeps[name];

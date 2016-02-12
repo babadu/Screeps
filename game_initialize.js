@@ -6,7 +6,8 @@ module.exports = function(debugMode){
     if(Memory.initialize){
         return;
     }
-	
+	//Initialize Room Level
+	Memory.currentRoomLevel = Game.rooms["sim"].controller.level;
 	//INITIALIZE SOURCES
     Memory.sources = {};
     var sources = Game.rooms["sim"].find(FIND_SOURCES);
