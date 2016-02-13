@@ -10,11 +10,12 @@ module.exports = function (){
 	
 	switch(controller.level){
 	    case 1 : console.log('level 1'); plan_level_1(); break;
-	    case 2 : console.log('level 2'); plan_level_2(); break;
+	    case 2 : console.log('level 2'); plan_level_2(); changeUpgraderToBuilder(); break;
 		default: ;
 	}
 	
 	function plan_level_2(){
+	    //console.log('planning level 2..');
 		var numberOfRoads = 0;
 		var roadLimit = Memory.currentRoomLevel;
 	    //Spawn position
@@ -22,26 +23,51 @@ module.exports = function (){
     	//Get Energy Sources
     	var sources = room.find(FIND_SOURCES);
     	for(var i in sources){
-			if(Memory.sources[sources[i].id].CREEP_LIMIT_REACHED && numberOfRoads <= roadLimit){
-				var listConstructionSiteIds = [];
-				var pos_source = sources[i].pos;
-				//Find Shortest Path to a source
-				var path = room.findPath(pos_Spawn1, pos_source);
+			var pos_source = sources[i].pos;
+			//Find Shortest Path to a source
+			var path = room.findPath(pos_Spawn1, pos_source, {ignoreCreeps:true});
+			//console.log('for source..' + sources[i].id + 'pos_Spwan1 : ' + pos_Spawn1 + 'pos_source : ' + pos_source + 'path : ' + path);
+			
+			// BUILD ROADS
+			if(Memory.sources[sources[i].id].CREEP_LIMIT_REACHED && numberOfRoads < roadLimit){
+			    //console.log('..build roads..');
+			    var listConstructionSiteIds = [];
 				for(var j in path){
 					//Create construction site
 					room.createConstructionSite(path[j].x, path[j].y, STRUCTURE_ROAD);
-					var constructionSite = room.lookForAt(CONSTRUCTION_SITE, path[j].x, path[j].y);
-					listConstructionSiteIds.push(constructionSite.id);
+					var constructionSite = room.lookForAt('constructionSite', path[j].x, path[j].y);
+					if(constructionSite.length) {
+					    //console.log('construction id:' + constructionSite[0].id);
+					    listConstructionSiteIds.push(constructionSite[0].id);
+					}
 				}
+				//console.log('..construction ids..' + listConstructionSiteIds);
 				var creeps = sources[i].getCreeps();
 				for(var k in creeps){
-					creeps[k].memory.constructionlist = listConstructionSiteIds;
+				    creeps[k].memory.constructionlist = listConstructionSiteIds;
+					console.log('....for creep.. ' + creeps[k].id + '..constructionlist..' + creeps[k].memory.constructionlist);
 				}
+				
 				numberOfRoads = numberOfRoads + 1;
 			} else {
+				// CREATE EXTEnSIon points
+			    //console.log('..create extentions..');
+				//var halfWay = Math.ceil(path.length/2);
+				//room.createConstructionSite(path[halfWay].x, path[halfWay].y, STRUCTURE_EXTENSION);
+				//console.log(room.lookForAt('constructionSite', path[halfWay].x, path[halfWay].y));
 				return;
+				
 			}
     	}
+	}
+	
+	function changeUpgraderToBuilder(){
+		
+		var upgraders = room.find(FIND_CREEPS, {filter : {memory : { role: 'upgrader'}}});
+		for (var i in upgraders){
+			upgraders[i].memory.role = 'builder';
+		}
+		
 	}
 	
 	function plan_level_1(){

@@ -21,16 +21,15 @@ module.exports.loop = function () {
 		if(creep.memory.role == 'harvester') {
 		    toHarvest(creep);
 		}
-
-		if(creep.memory.role == 'builder') {
-		    toBuild(creep);
-		}
-        
-        if(creep.memory.role == 'guard') {
-            toGuard(creep);
-        }
         if(creep.memory.role == 'upgrader') {
             toUpgrade(creep);
         }
+		if(creep.memory.role == 'builder') {
+		    toBuild(creep);
+		}
+        if(creep.memory.role == 'guard') {
+            toGuard(creep);
+        }
+
 	}
 }

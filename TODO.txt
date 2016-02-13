@@ -25,6 +25,7 @@ Defense management:
 2. Add logic for finding exits.
 
 Bugs:
+1. Builder was built before upgrader!
 
 Refactoring:
 1. Clearly define Memory objects and global variables.			...done

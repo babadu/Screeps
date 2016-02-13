@@ -11,7 +11,7 @@ module.exports = function(creep){
 				creep.moveTo(targets[0]);					
 			}
 		} else {
-		    creep.moveTo(10,25);
+		    creep.memory.role = 'upgrader';
 		}
 	}
 }

@@ -10,10 +10,16 @@
 	        creep.moveTo(aSource);
         }
 	} else {
-		if(creep.memory.constructionlist != null){
+		if(creep.memory.constructionlist != null && creep.memory.constructionlist.length != 0){
 			var nextConstructionSite = Game.getObjectById(creep.memory.constructionlist[0]);
-			if(nextConstructionSite.progressTotal == 0){
-				creep.memory.constructionlist = creep.memory.constructionlist.splice(0,1);
+			//console.log('creep name:' + creep.name);
+			if(nextConstructionSite == null){
+			    //console.log('construction list:' + creep.memory.constructionlist instanceof Array);
+			    if(creep.memory.constructionlist.length == 1){
+			        creep.memory.constructionlist = null;
+			    } else {
+			        creep.memory.constructionlist = creep.memory.constructionlist.splice(0,1);
+			    }
 				creep.memory.constructionlist == null ? Memory.sources[creep.memory.target].ROAD_TO_SPAWN = true : false;
 			} else {
 				creep.memory.workmode = 'build';
