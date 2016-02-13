@@ -12,9 +12,9 @@ var planLevel = require('create_structure');
 module.exports.loop = function () {
 
     initialize();
-    //createCreeps();
+    createCreeps();
     planLevel();
-	//work();
+	work();
 }
 function work(){
 	for(var name in Game.creeps) {

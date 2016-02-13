@@ -21,6 +21,10 @@ Spawn.prototype.createCreeps = function(){
 		this.createHarvesterCreep();
 		return;
 	}
+	if(this.UpgraderCount < Memory.limits.UPGRADER_LIMIT){
+		this.createUpgradeCreep();
+		return;
+	}
 	if(this.BuilderCount < Memory.limits.BUILDER_LIMIT){
 		this.createBuilderCreep();
 		return;
@@ -29,10 +33,7 @@ Spawn.prototype.createCreeps = function(){
 		this.createGuardCreep();
 		return;
 	}
-	if(this.UpgraderCount < Memory.limits.UPGRADER_LIMIT){
-		this.createUpgradeCreep();
-		return;
-	}
+
 }
 
 Spawn.prototype.findNextAvailableSource = function(){
@@ -67,7 +68,7 @@ Spawn.prototype.createHarvesterCreep = function(){
 
 Spawn.prototype.createBuilderCreep = function(){
     
-	var newCreep = this.createCreep([WORK,CARRY,MOVE], null, {role:'builder'});
+	var newCreep = this.createCreep([WORK,WORK,CARRY,MOVE], null, {role:'builder'});
 	if(_.isString(newCreep)){
 		return newCreep;
 	}
@@ -75,7 +76,7 @@ Spawn.prototype.createBuilderCreep = function(){
 
 Spawn.prototype.createGuardCreep = function(){
     
-	var newCreep = this.createCreep([WORK,CARRY,MOVE], null, {role:'guard'});
+	var newCreep = this.createCreep([ATTACK,TOUGH,TOUGH,MOVE], null, {role:'guard'});
 	if(_.isString(newCreep)){
 		return newCreep;
 	}
@@ -83,7 +84,7 @@ Spawn.prototype.createGuardCreep = function(){
 
 Spawn.prototype.createUpgradeCreep = function(){
     
-	var newCreep = this.createCreep([WORK,CARRY,MOVE], null, {role:'upgrader'});
+	var newCreep = this.createCreep([WORK,WORK,CARRY,MOVE], null, {role:'upgrader'});
 	if(_.isString(newCreep)){
 		return newCreep;
 	}

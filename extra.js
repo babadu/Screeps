@@ -15,3 +15,11 @@ Source.prototype.updateCreepCount = function(creep){
 Repair
 var targets = creep.room.find(FIND_STRUCTURES, {filter: object => object.hits < object.hitsMax});
 targets.sort((a,b) => a.hits - b.hits);
+
+
+					var constructionSite = room.lookForAt('constructionSite', path[j].x, path[j].y);
+					console.log(constructionSite);
+					if(constructionSite.length) {
+					    console.log('construction id:' + constructionSite[0].id);
+					    listConstructionSiteIds.push(constructionSite[0].id);
+					}

@@ -2,10 +2,13 @@ SCREEPS TODO LIST
 
 New features:
 
+Testing Support:
+1. Extend console.save to save to a file.
+2. Add code to support test construction plans.
+
 Game management:
 1. Track time to level.
-2. Calculate math required to figure out 
-3. Can we use linear programming concepts to figure out the optimum path? [Advanced]
+2. Can we use linear programming concepts to figure out the optimum path? [Advanced]
 
 Resource management:
 1. Increase creeps limits with level upgrades.
@@ -18,6 +21,11 @@ Resource management:
 Creep management:
 1. Add road construction site list to the creep.
 2. Calculate body parts for builders, upgraders.
+	Level 1-2
+	Harvester/Builder/Upgrader 				[WORK,CARRY,MOVE]
+	Guard 									[ATTACK,TOUGH,TOUGH,MOVE]
+	Level 3-4
+	
 3. After upgrading to level 2 switch role to harvester.
 
 Defense management:
@@ -25,7 +33,6 @@ Defense management:
 2. Add logic for finding exits.
 
 Bugs:
-1. Builder was built before upgrader!
 
 Refactoring:
 1. Clearly define Memory objects and global variables.			...done

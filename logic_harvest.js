@@ -11,9 +11,10 @@
         }
 	} else {
 		if(creep.memory.constructionlist != null && creep.memory.constructionlist.length != 0){
-			var nextConstructionSite = Game.getObjectById(creep.memory.constructionlist[0]);
+			var constructionSite = room.lookForAt('constructionSite', constructionlist[0].x, constructionlist[0].y);
+			//var nextConstructionSite = Game.getObjectById(creep.memory.constructionlist[0]);
 			//console.log('creep name:' + creep.name);
-			if(nextConstructionSite == null){
+			if(constructionSite == null){
 			    //console.log('construction list:' + creep.memory.constructionlist instanceof Array);
 			    if(creep.memory.constructionlist.length == 1){
 			        creep.memory.constructionlist = null;
@@ -23,8 +24,8 @@
 				creep.memory.constructionlist == null ? Memory.sources[creep.memory.target].ROAD_TO_SPAWN = true : false;
 			} else {
 				creep.memory.workmode = 'build';
-				if(creep.build(nextConstructionSite) == ERR_NOT_IN_RANGE){
-    		        creep.moveTo(nextConstructionSite);
+				if(creep.build(constructionSite) == ERR_NOT_IN_RANGE){
+    		        creep.moveTo(constructionSite);
     		    }
 			}
 	    } else if(creep.transfer(Game.spawns.Spawn1, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {

@@ -33,9 +33,9 @@ Source.prototype.determinePathToSource = function (){
 	var path = this.room.findPath(pos_Spawn1, pos_source);
 }
 
-Source.prototype.getCreeps = function(){
+Source.prototype.getCreeps = function(roleX){
 	
-	var creeps = this.room.find(FIND_MY_CREEPS, {filter : {memory : { role: 'harvester' , target : this.id} } });
+	var creeps = this.room.find(FIND_MY_CREEPS, {filter : {memory : { role: roleX , target : this.id} } });
 	return creeps;
 	
 }
