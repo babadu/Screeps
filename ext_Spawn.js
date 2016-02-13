@@ -68,7 +68,7 @@ Spawn.prototype.createHarvesterCreep = function(){
 
 Spawn.prototype.createBuilderCreep = function(){
     
-	var newCreep = this.createCreep([WORK,WORK,CARRY,MOVE], null, {role:'builder'});
+	var newCreep = this.createCreep([WORK,CARRY,MOVE], null, {role:'builder'});
 	if(_.isString(newCreep)){
 		return newCreep;
 	}
@@ -84,7 +84,7 @@ Spawn.prototype.createGuardCreep = function(){
 
 Spawn.prototype.createUpgradeCreep = function(){
     
-	var newCreep = this.createCreep([WORK,WORK,CARRY,MOVE], null, {role:'upgrader'});
+	var newCreep = this.createCreep([WORK,CARRY,MOVE], null, {role:'upgrader'});
 	if(_.isString(newCreep)){
 		return newCreep;
 	}

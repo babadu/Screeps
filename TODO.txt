@@ -33,6 +33,8 @@ Defense management:
 2. Add logic for finding exits.
 
 Bugs:
+1. Road to spawn is true for incompleted roads.
+2. constructionlist not getting populated correctly.
 
 Refactoring:
 1. Clearly define Memory objects and global variables.			...done

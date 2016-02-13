@@ -23,3 +23,13 @@ targets.sort((a,b) => a.hits - b.hits);
 					    console.log('construction id:' + constructionSite[0].id);
 					    listConstructionSiteIds.push(constructionSite[0].id);
 					}
+					
+					
+							/*
+		if(creep.memory.constructionlist.length == 1){
+			creep.memory.constructionlist = null;
+			creep.memory.constructionlist == null ? Memory.sources[creep.memory.target].ROAD_TO_SPAWN = true : false;
+		} else {
+			creep.memory.constructionlist = creep.memory.constructionlist.splice(0,1);
+		}
+		*/

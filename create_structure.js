@@ -6,7 +6,7 @@ module.exports = function (){
 	if(controller.level == Memory.currentRoomLevel){
 		return;
 	}
-	Memory.currentRoomLevel = 0;
+	Memory.currentRoomLevel = controller.level;
 	
 	switch(controller.level){
 	    case 1 : plan_level_1(); break;
@@ -60,6 +60,7 @@ module.exports = function (){
 	function add_path_to_creeps(creeps, path){
 		for(var i in creeps){
 		    creeps[i].memory.constructionlist = path;
+			creeps[i].memory.constructionIndex = path.length;
 			console.log('....for creep.. ' + creeps[i].id + '..constructionlist..' + creeps[i].memory.constructionlist);
 		}
 	}
