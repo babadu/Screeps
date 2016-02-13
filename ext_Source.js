@@ -25,6 +25,21 @@ Source.prototype.determineCreepLimit = function (){
 	Memory.sources[this.id].CREEP_LIMIT = creeplimit;
 }
 
+Source.prototype.determinePathToSource = function (){
+	
+	var pos_Spawn1 = Game.spawns.Spawn1.pos;
+	var pos_source = this.pos;
+	//Find Shortest Path to a source
+	var path = this.room.findPath(pos_Spawn1, pos_source);
+}
+
+Source.prototype.getCreeps = function(){
+	
+	var creeps = this.room.find(FIND_MY_CREEPS, {filter : {memory : { role: 'harvester' , target : this.id} } });
+	return creeps;
+	
+}
+
 Source.prototype.initialize = function(){
     Memory.debug ? console.log(this.id + ":initialize source..") : false;
     Memory.sources[this.id] = {CREEP_LIMIT: 0, CREEP_LIMIT_REACHED: false, ROAD_TO_SPAWN: false};

@@ -10,17 +10,17 @@
 	        creep.moveTo(aSource);
         }
 	} else {
-	    if(Memory.currentRoomLevel == 2 && !Memory.sources[creep.memory.target].ROAD_TO_SPAWN){
-    	    var nearestRoad = creep.findNearestConstructionSite();
-    	    if(nearestRoad != null){
-    	        creep.memory.workmode = 'build';
-    		    if(creep.build(nearestRoad) == ERR_NOT_IN_RANGE){
-    		        creep.moveTo(nearestRoad);
+		if(creep.memory.constructionlist != null){
+			var nextConstructionSite = Game.getObjectById(creep.memory.constructionlist[0]);
+			if(nextConstructionSite.progressTotal == 0){
+				creep.memory.constructionlist = creep.memory.constructionlist.splice(0,1);
+				creep.memory.constructionlist == null ? Memory.sources[creep.memory.target].ROAD_TO_SPAWN = true : false;
+			} else {
+				creep.memory.workmode = 'build';
+				if(creep.build(nextConstructionSite) == ERR_NOT_IN_RANGE){
+    		        creep.moveTo(nextConstructionSite);
     		    }
-				if(nearestRoad == 'ROAD_COMPLETE'){
-					Memory.sources[creep.memory.target].ROAD_TO_SPAWN = true;
-				}
-    	    }
+			}
 	    } else if(creep.transfer(Game.spawns.Spawn1, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
 	        creep.moveTo(Game.spawns.Spawn1);
 	    }			

@@ -40,15 +40,17 @@ Spawn.prototype.findNextAvailableSource = function(){
     var sources = Memory.sources;
     //console.log(sources);
     for(var i in sources){
-		var currentCount = this.getHarvesterCountPerSource(i);
-		var sourceLimit = Memory.sources[i].CREEP_LIMIT;
-		//console.log("current : " + currentCount + "..sourceLimit.." + xSourceLimit);
-        if(currentCount < sourceLimit){
-			return i;
-        }
-		if(currentCount == sourceLimit){
-			Memory.sources[i].CREEP_LIMIT_REACHED = true;
-        }
+		if(!sources[i].CREEP_LIMIT_REACHED){
+			var currentCount = this.getHarvesterCountPerSource(i);
+			var sourceLimit = sources[i].CREEP_LIMIT;
+			//console.log("current : " + currentCount + "..sourceLimit.." + xSourceLimit);
+			if(currentCount < sourceLimit){
+				return i;
+			}
+			if(currentCount == sourceLimit){
+				Memory.sources[i].CREEP_LIMIT_REACHED = true;
+			}
+		}
     }
 }
 
