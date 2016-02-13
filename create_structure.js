@@ -10,12 +10,12 @@ module.exports = function (){
 	
 	switch(controller.level){
 	    case 1 : console.log('level 1'); plan_level_1(); break;
-	    case 2 : console.log('level 2'); plan_level_2(); changeUpgraderToBuilder(); break;
+	    case 2 : console.log('level 2'); plan_level_2(); switchCreepRole('upgrader', 'builder'); break;
 		default: ;
 	}
 	
-	function plan_level_2(){
-	    //console.log('planning level 2..');
+	function plan_level_1(){
+	    console.log('planning level 2..');
 		var numberOfRoads = 0;
 		var roadLimit = Memory.currentRoomLevel;
 	    //Spawn position
@@ -30,18 +30,21 @@ module.exports = function (){
 			
 			// BUILD ROADS
 			if(Memory.sources[sources[i].id].CREEP_LIMIT_REACHED && numberOfRoads < roadLimit){
-			    //console.log('..build roads..');
+			    console.log('..build roads..');
 			    var listConstructionSiteIds = [];
 				for(var j in path){
 					//Create construction site
 					room.createConstructionSite(path[j].x, path[j].y, STRUCTURE_ROAD);
 					var constructionSite = room.lookForAt('constructionSite', path[j].x, path[j].y);
 					if(constructionSite.length) {
-					    //console.log('construction id:' + constructionSite[0].id);
+					    console.log('construction id:' + constructionSite[0].id);
 					    listConstructionSiteIds.push(constructionSite[0].id);
 					}
 				}
-				//console.log('..construction ids..' + listConstructionSiteIds);
+				
+				console.log('..construction ids..' + listConstructionSiteIds);
+				var listConstructionSiteIds2 = room.find(FIND_MY_CONSTRUCTION_SITES);
+				console.log('..constuction 2' + listConstructionSiteIds2);
 				var creeps = sources[i].getCreeps();
 				for(var k in creeps){
 				    creeps[k].memory.constructionlist = listConstructionSiteIds;
@@ -61,16 +64,24 @@ module.exports = function (){
     	}
 	}
 	
-	function changeUpgraderToBuilder(){
+	function plan_roads(){
 		
-		var upgraders = room.find(FIND_CREEPS, {filter : {memory : { role: 'upgrader'}}});
+	}
+	
+	function plan_extensions(){
+		
+	}
+	
+	function switchCreepRole(roleX, roleY){
+		
+		var upgraders = room.find(FIND_CREEPS, {filter : {memory : { role: roleX}}});
 		for (var i in upgraders){
-			upgraders[i].memory.role = 'builder';
+			upgraders[i].memory.role = roleY;
 		}
 		
 	}
 	
-	function plan_level_1(){
+	function plan_level_2(){
 	    
 	}
 	
